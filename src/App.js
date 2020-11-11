@@ -44,7 +44,7 @@ function App() {
                 openedMenu = false;
                 document.getElementById('content').classList.remove('open');
             } else {
-                openedMenu = false;
+                openedMenu = true;
                 document.getElementById('content').classList.add('open');
             }
         }
