@@ -1,25 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useRef } from "react";
+import Menu from "./components/menu";
+import Content from "./components/content";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    let openedMenu = false;
+    const contentDiv = useRef();
+
+    const menuHandler = () => {
+        if(openedMenu) {
+            contentDiv.current.classList.remove('open');
+        }
+        else {
+            contentDiv.current.classList.add('open');
+        }
+        openedMenu = !openedMenu;
+    };
+
+    return (
+        <div className="App">
+            <Menu toggleMenu={menuHandler} />
+            <div className="content" ref={contentDiv}>
+                <Content toggleMenu={menuHandler} />
+            </div>
+        </div>
+    );
 }
 
 export default App;
